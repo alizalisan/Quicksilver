@@ -186,6 +186,7 @@ int NuclearData::addIsotope(
    return _isotopes.size() - 1;
 }
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 // Return the cross section for this energy group
 double NuclearDataReaction::getCrossSection(unsigned int group)
@@ -195,6 +196,7 @@ double NuclearDataReaction::getCrossSection(unsigned int group)
 }
 HOST_DEVICE_END
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 int NuclearData::getNumberReactions(unsigned int isotopeIndex)
 {
@@ -204,6 +206,7 @@ int NuclearData::getNumberReactions(unsigned int isotopeIndex)
 HOST_DEVICE_END
 
 // For this energy, return the group index
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 int NuclearData::getEnergyGroup(double energy)
 {
@@ -229,6 +232,7 @@ HOST_DEVICE_END
 
 // General routines to help access data lower down
 // Return the total cross section for this energy group
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 double NuclearData::getTotalCrossSection(unsigned int isotopeIndex, unsigned int group)
 {
@@ -244,6 +248,7 @@ double NuclearData::getTotalCrossSection(unsigned int isotopeIndex, unsigned int
 HOST_DEVICE_END
 
 // Return the total cross section for this energy group
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 double NuclearData::getReactionCrossSection(
    unsigned int reactIndex, unsigned int isotopeIndex, unsigned int group)

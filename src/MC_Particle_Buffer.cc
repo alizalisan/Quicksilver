@@ -92,6 +92,7 @@ void particle_buffer_base_type::Allocate(int buffer_size)
 //----------------------------------------------------------------------------------------------------------------------
 //  Initialize the data members of the particle buffer.
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void particle_buffer_base_type::Initialize_Buffer()
 {
     this->num_particles = 0;
@@ -142,6 +143,7 @@ void particle_buffer_base_type::Free_Memory()
 //----------------------------------------------------------------------------------------------------------------------
 //  Reset to 0 and clear all vectors.
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void mcp_test_done_class::Zero_Out()
 {
 
@@ -165,6 +167,7 @@ void mcp_test_done_class::Zero_Out()
 //----------------------------------------------------------------------------------------------------------------------
 //  Free the memory and cleanup communication.
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void mcp_test_done_class::Free_Memory()
 {
     this->Zero_Out();
@@ -195,6 +198,7 @@ void mcp_test_done_class::Get_Local_Gains_And_Losses(MonteCarlo *monteCarlo, int
 //  Initializes the particle buffers, mallocing them and assigning processors to buffers.
 //
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void MC_Particle_Buffer::Instantiate()
 {
     this->test_done.Zero_Out();
@@ -362,6 +366,7 @@ MC_Particle_Buffer::MC_Particle_Buffer(MonteCarlo *mcco_, size_t bufferSize_)
 //  Initializes the particle buffers, mallocing them and assigning processors to buffers.
 //
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void MC_Particle_Buffer::Initialize()
 {
     NVTX_Range range("MC_Particle_Buffer::Initialize");
@@ -377,6 +382,7 @@ void MC_Particle_Buffer::Initialize()
 //----------------------------------------------------------------------------------------------------------------------
 //  Selects a  particle buffer.
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 int MC_Particle_Buffer::Choose_Buffer(int processor)
 {
     int buffer    = this->Get_Processor_Buffer_Index(processor);
@@ -421,6 +427,7 @@ void MC_Particle_Buffer::Buffer_Particle(MC_Particle *particle, int buffer)
 //  Stores the particle into a particle buffer.  
 //  If the buffer becomes to full error out - no buffer flush mode.
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void MC_Particle_Buffer::Buffer_Particle(MC_Base_Particle &particle, int buffer)
 {
     particle_buffer_base_type &send_buffer = this->task[0].send_buffer[buffer];
@@ -463,6 +470,7 @@ void MC_Particle_Buffer::Allocate_Send_Buffer( SendQueue &sendQueue )
 //----------------------------------------------------------------------------------------------------------------------
 // Wrapper to send all of the particle buffers
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void MC_Particle_Buffer::Send_Particle_Buffers( )
 {
     for( int buffer_index = 0; buffer_index < this->num_buffers; buffer_index++ )
@@ -506,6 +514,7 @@ void MC_Particle_Buffer::Send_Particle_Buffer(int buffer)
 //----------------------------------------------------------------------------------------------------------------------
 //  Receive the size of the next message you are expecting
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void MC_Particle_Buffer::Post_Receive_Particle_Buffer( size_t bufferSize_ )
 {
     for ( int buffer_index = 0; buffer_index < this->num_buffers; buffer_index++ )
@@ -524,6 +533,7 @@ void MC_Particle_Buffer::Post_Receive_Particle_Buffer( size_t bufferSize_ )
 //----------------------------------------------------------------------------------------------------------------------
 //  Receives a particle buffer and puts the particles in it into particle vault to be processed.
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void MC_Particle_Buffer::Receive_Particle_Buffers(uint64_t &fill_vault)
 {
     for ( int buffer_index = 0; buffer_index < this->num_buffers; buffer_index++ )
@@ -549,6 +559,7 @@ void MC_Particle_Buffer::Receive_Particle_Buffers(uint64_t &fill_vault)
 //----------------------------------------------------------------------------------------------------------------------
 //  Cancels all pending irecv requests
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void MC_Particle_Buffer::Cancel_Receive_Buffer_Requests()
 {
     for ( int buffer_index = 0; buffer_index < this->num_buffers; buffer_index++ )
@@ -647,6 +658,7 @@ bool MC_Particle_Buffer::Iallreduce_ParticleCounts()
 //----------------------------------------------------------------------------------------------------------------------
 //  Free Buffers to allow realocation
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void MC_Particle_Buffer::Free_Buffers()
 {
     for( int buffer = 0; buffer < this->num_buffers; buffer++ )
@@ -661,6 +673,7 @@ void MC_Particle_Buffer::Free_Buffers()
 //----------------------------------------------------------------------------------------------------------------------
 //  Free the particle buffer memory.
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void MC_Particle_Buffer::Free_Memory()
 {
     MC_VERIFY_THREAD_ZERO;

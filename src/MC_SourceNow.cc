@@ -24,7 +24,7 @@ namespace
    double Get_Speed_From_Energy(double energy);
 }
 
-
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void MC_SourceNow(MonteCarlo *monteCarlo)
 {
     NVTX_Range range("MC_Source_Now");
@@ -166,6 +166,7 @@ void MC_SourceNow(MonteCarlo *monteCarlo)
 
 namespace
 {
+    __attribute__((annotate("@critical_path(pointcut='around')")))
    double Get_Speed_From_Energy(double energy)
    {
       static const double rest_mass_energy = PhysicalConstants::_neutronRestMassEnergy;

@@ -17,6 +17,7 @@ namespace
 }
 
 #if defined (HAVE_CUDA)
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void warmup_kernel()
 {
         WarmUpKernel<<<1, 1>>>();
@@ -25,6 +26,7 @@ void warmup_kernel()
 #endif
 
 #if defined (HAVE_CUDA)
+__attribute__((annotate("@critical_path(pointcut='around')")))
 int ThreadBlockLayout( dim3 &grid, dim3 &block, int num_particles )
 {
     int run_kernel = 1;
@@ -70,6 +72,7 @@ int ThreadBlockLayout( dim3 &grid, dim3 &block, int num_particles )
 #endif
 
 #if defined (HAVE_CUDA)
+__attribute__((annotate("@critical_path(pointcut='around')")))
 DEVICE 
 int getGlobalThreadID()
 {

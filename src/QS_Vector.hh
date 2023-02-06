@@ -175,6 +175,7 @@ class qs_vector
    }
 
    //Atomically retrieve an availible index then increment that index some amount
+   __attribute__((annotate("@critical_path(pointcut='around')")))
    HOST_DEVICE_CUDA
    int atomic_Index_Inc( int inc )
    {

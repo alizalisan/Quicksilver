@@ -20,6 +20,7 @@
 //
 //----------------------------------------------------------------------------------------------------------------------
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 
 MC_Tally_Event::Enum MC_Facet_Crossing_Event(MC_Particle &mc_particle, MonteCarlo* monteCarlo, int particle_index, ParticleVault* processingVault)

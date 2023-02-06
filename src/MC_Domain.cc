@@ -393,6 +393,7 @@ MC_Domain::MC_Domain(const MeshPartition& meshPartition, const GlobalFccGrid& gr
 
 }
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void MC_Domain::clearCrossSectionCache(int numEnergyGroups)
 {
    for (unsigned ii=0; ii<cell_state.size(); ++ii)

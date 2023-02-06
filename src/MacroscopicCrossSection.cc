@@ -11,6 +11,7 @@
 //
 //  A reactionIndex of -1 means total cross section.
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE 
 double macroscopicCrossSection(MonteCarlo* monteCarlo, int reactionIndex, int domainIndex, int cellIndex,
                                int isoIndex, int energyGroup)

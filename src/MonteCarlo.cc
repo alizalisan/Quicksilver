@@ -146,6 +146,7 @@ MonteCarlo::~MonteCarlo()
     #endif
 }
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void MonteCarlo::clearCrossSectionCache()
 {
    int numEnergyGroups = _nuclearData->_numEnergyGroups;

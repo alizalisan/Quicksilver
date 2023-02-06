@@ -21,6 +21,7 @@
 //  Return true if the particle will continue.
 //----------------------------------------------------------------------------------------------------------------------
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 void updateTrajectory( double energy, double angle, MC_Particle& particle )
 {
@@ -47,6 +48,7 @@ HOST_DEVICE_END
 
 HOST_DEVICE
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 bool CollisionEvent(MonteCarlo* monteCarlo, MC_Particle &mc_particle, unsigned int tally_index)
 {
    const MC_Cell_State &cell = monteCarlo->domain[mc_particle.domain].cell_state[mc_particle.cell];

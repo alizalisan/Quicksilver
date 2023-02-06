@@ -9,10 +9,12 @@
 #include <vector>
 using std::vector;
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void Tallies::CycleInitialize(MonteCarlo* monteCarlo)
 {
 }
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void Tallies::SumTasks(void)
 {
    for (int replication_index = 1; replication_index < _num_balance_replications; replication_index++)
@@ -22,6 +24,7 @@ void Tallies::SumTasks(void)
    }
 }
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void Tallies::CycleFinalize(MonteCarlo *monteCarlo)
 {
     SumTasks(); // sum the task level data down to index 0 at the end of each cycle
@@ -97,6 +100,7 @@ void Tallies::CycleFinalize(MonteCarlo *monteCarlo)
     _spectrum.UpdateSpectrum(monteCarlo);
 }
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void Fluence::compute( int domainIndex, ScalarFluxDomain &scalarFluxDomain )
 {
     int numCells = scalarFluxDomain._task[0]._cell.size();
@@ -120,6 +124,7 @@ void Fluence::compute( int domainIndex, ScalarFluxDomain &scalarFluxDomain )
 
 }
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void Tallies::PrintSummary(MonteCarlo *monteCarlo)
 {
    MC_FASTTIMER_STOP(MC_Fast_Timer::cycleFinalize); // stop the finalize timer to get report

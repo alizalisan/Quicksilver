@@ -9,6 +9,7 @@
 
 using std::string;
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void EnergySpectrum::UpdateSpectrum(MonteCarlo* monteCarlo)
 {
     if( _fileName == "" ) return;

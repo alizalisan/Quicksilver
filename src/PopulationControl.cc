@@ -17,6 +17,7 @@ namespace
                               Balance& taskBalance);
 }
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void PopulationControl(MonteCarlo* monteCarlo, bool loadBalance)
 {
     NVTX_Range range("PopulationControl");
@@ -68,6 +69,7 @@ void PopulationControl(MonteCarlo* monteCarlo, bool loadBalance)
 
 namespace
 {
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void PopulationControlGuts(const double splitRRFactor, uint64_t currentNumParticles, ParticleVaultContainer* my_particle_vault, Balance& taskBalance)
 {
     uint64_t vault_size = my_particle_vault->getVaultSize();
@@ -124,6 +126,7 @@ void PopulationControlGuts(const double splitRRFactor, uint64_t currentNumPartic
 
 
 // Roulette low-weight particles relative to the source particle weight.
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void RouletteLowWeightParticles(MonteCarlo* monteCarlo)
 {
     NVTX_Range range("RouletteLowWeightParticles");

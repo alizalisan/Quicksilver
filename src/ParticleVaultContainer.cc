@@ -80,6 +80,7 @@ ParticleVaultContainer::
 //at the index provided
 //--------------------------------------------------------------
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 ParticleVault* ParticleVaultContainer::
 getTaskProcessingVault(uint64_t vaultIndex)
 {
@@ -94,6 +95,7 @@ getTaskProcessingVault(uint64_t vaultIndex)
 //at the index provided
 //--------------------------------------------------------------
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 ParticleVault* ParticleVaultContainer::
 getTaskProcessedVault(uint64_t vaultIndex)
 {
@@ -108,6 +110,7 @@ getTaskProcessedVault(uint64_t vaultIndex)
 //processed list
 //--------------------------------------------------------------
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 uint64_t ParticleVaultContainer::
 getFirstEmptyProcessedVault()
 {
@@ -144,6 +147,7 @@ HOST_DEVICE_END
 //returns the total number of particles in the processing vault
 //--------------------------------------------------------------
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 uint64_t ParticleVaultContainer::
 sizeProcessing()
 {
@@ -194,6 +198,7 @@ sizeExtra()
 //first vaults needed to hold that number of particles
 //--------------------------------------------------------------
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void ParticleVaultContainer::
 collapseProcessing()
 {
@@ -231,7 +236,8 @@ collapseProcessing()
 //Collapses the particles in the processed vault down to the
 //first vaults needed to hold that number of particles
 //--------------------------------------------------------------
-    
+
+__attribute__((annotate("@critical_path(pointcut='around')")))    
 void ParticleVaultContainer::
 collapseProcessed()
 {
@@ -275,6 +281,7 @@ collapseProcessed()
 //      called
 //--------------------------------------------------------------
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void ParticleVaultContainer::
 swapProcessingProcessedVaults()
 {
@@ -315,6 +322,7 @@ swapProcessingProcessedVaults()
 //Adds a particle to the processing particle vault
 //--------------------------------------------------------------
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void ParticleVaultContainer::
 addProcessingParticle( MC_Base_Particle &particle, uint64_t &fill_vault_index )
 {
@@ -337,6 +345,7 @@ addProcessingParticle( MC_Base_Particle &particle, uint64_t &fill_vault_index )
 //------------addExtraParticle----------------------------------
 //adds a particle to the extra particle vaults (used in kernel)
 //--------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 void ParticleVaultContainer::
 addExtraParticle( MC_Particle &particle)
@@ -354,6 +363,7 @@ HOST_DEVICE_END
 //_processedVault
 //--------------------------------------------------------------
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void ParticleVaultContainer::
 cleanExtraVaults()
 {

@@ -143,6 +143,7 @@ void gameOver()
     mcco->_tallies->_spectrum.PrintSpectrum(mcco);
 }
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void cycleInit( bool loadBalance )
 {
 
@@ -172,7 +173,7 @@ void cycleInit( bool loadBalance )
 
 
 #if defined (HAVE_CUDA)
-
+__attribute__((annotate("@critical_path(pointcut='around')")))
 __global__ void CycleTrackingKernel( MonteCarlo* monteCarlo, int num_particles, ParticleVault* processingVault, ParticleVault* processedVault )
 {
    int global_index = getGlobalThreadID();
@@ -185,6 +186,7 @@ __global__ void CycleTrackingKernel( MonteCarlo* monteCarlo, int num_particles, 
 
 #endif
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void cycleTracking(MonteCarlo *monteCarlo)
 {
     MC_FASTTIMER_START(MC_Fast_Timer::cycleTracking);
@@ -356,7 +358,7 @@ void cycleTracking(MonteCarlo *monteCarlo)
    MC_FASTTIMER_STOP(MC_Fast_Timer::cycleTracking);
 }
 
-
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void cycleFinalize()
 {
     MC_FASTTIMER_START(MC_Fast_Timer::cycleFinalize);

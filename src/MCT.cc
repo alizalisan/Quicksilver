@@ -397,6 +397,7 @@ namespace
 
 
 ///  Reflects the particle off of a reflection boundary.
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 void MCT_Reflect_Particle(MonteCarlo *monteCarlo, MC_Particle &particle)
 {

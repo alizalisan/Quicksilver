@@ -6,7 +6,7 @@
 //----------------------------------------------------------------------------------------------------------------------
 //  Copies a single particle from the particle-vault data structure into the active-particle data structure.
 //----------------------------------------------------------------------------------------------------------------------
-
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 void MC_Load_Particle(MonteCarlo *monteCarlo, MC_Particle &mc_particle, ParticleVault *particleVault, int particle_index)
 {

@@ -15,6 +15,7 @@ public:
    bool empty() const {return _particles.empty();}
 
    // Get the size of the vault.
+   __attribute__((annotate("@critical_path(pointcut='around')")))
    HOST_DEVICE_CUDA
    size_t size() const {return _particles.size();}
 
@@ -25,6 +26,7 @@ public:
    }
 
    // Add all particles in a 2nd vault into this vault.
+   __attribute__((annotate("@critical_path(pointcut='around')")))
    void append (ParticleVault & vault2)
         { _particles.appendList( vault2._particles.size(), &vault2._particles[0] ); }
 
@@ -93,6 +95,7 @@ pushParticle(MC_Particle &particle)
 }
 
 // -----------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE_CUDA
 inline void ParticleVault::
 pushBaseParticle(MC_Base_Particle &base_particle)
@@ -102,6 +105,7 @@ pushBaseParticle(MC_Base_Particle &base_particle)
 }
 
 // -----------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 inline bool ParticleVault::
 popBaseParticle(MC_Base_Particle &base_particle)
 {

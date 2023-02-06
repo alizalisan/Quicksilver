@@ -26,6 +26,7 @@ cleanVault( int end_index )
 }
 #endif
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 void ParticleVault::
 collapse( size_t fill_size, ParticleVault* vault2 )
 {

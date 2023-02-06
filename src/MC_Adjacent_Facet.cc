@@ -6,6 +6,7 @@
 
 class MC_Particle;
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 
 Subfacet_Adjacency &MCT_Adjacent_Facet(const MC_Location &location, MC_Particle &mc_particle, MonteCarlo* monteCarlo)

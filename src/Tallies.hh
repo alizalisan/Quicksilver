@@ -353,6 +353,7 @@ class Tallies
         ATOMIC_ADD( _scalarFluxDomain[domain]._task[task]._cell[cell]._group[group], value );
     }
 
+   __attribute__((annotate("@critical_path(pointcut='around')")))
     HOST_DEVICE_CUDA
     void TallyCellValue(double value, int domain, int task, int cell)
     {

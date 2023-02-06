@@ -11,6 +11,7 @@
 #include "macros.hh"
 #include "qs_assert.hh"
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 void CycleTrackingGuts( MonteCarlo *monteCarlo, int particle_index, ParticleVault *processingVault, ParticleVault *processedVault )
 {
@@ -30,6 +31,7 @@ void CycleTrackingGuts( MonteCarlo *monteCarlo, int particle_index, ParticleVaul
 }
 HOST_DEVICE_END
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 void CycleTrackingFunction( MonteCarlo *monteCarlo, MC_Particle &mc_particle, int particle_index, ParticleVault* processingVault, ParticleVault* processedVault)
 {

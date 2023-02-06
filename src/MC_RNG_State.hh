@@ -19,6 +19,7 @@ HOST_DEVICE_END
 //  Sample returns the pseudo-random number produced by a call to a random
 //  number generator.
 //----------------------------------------------------------------------------------------------------------------------
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 inline double rngSample(uint64_t *seed)
 {

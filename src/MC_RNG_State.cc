@@ -82,6 +82,7 @@ namespace
 
 namespace
 {
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
    // Function used to hash a 64 bit int to get an initial state.
    uint64_t hash_state( uint64_t initial_number )
@@ -103,6 +104,7 @@ HOST_DEVICE_END
 //  This routine spawns a "child" random number seed from a "parent" random number seed.
 //----------------------------------------------------------------------------------------------------------------------
 
+__attribute__((annotate("@critical_path(pointcut='around')")))
 HOST_DEVICE
 uint64_t rngSpawn_Random_Number_Seed(uint64_t *parent_seed)
 {
